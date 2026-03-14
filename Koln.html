@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="light">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manisa → Köln Gezi Haritası</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-label="Gezi Haritası Logo">
+          <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2"/>
+          <path d="M8 16 Q12 8 16 16 Q20 24 24 16" stroke="currentColor" stroke-width="2" fill="none"/>
+          <circle cx="10" cy="14" r="2.5" fill="currentColor"/>
+          <circle cx="22" cy="18" r="2.5" fill="currentColor"/>
+        </svg>
+        <span class="logo-text">Manisa → Köln</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#harita" class="nav-link active">Harita</a>
+        <a href="#detaylar" class="nav-link">Detaylar</a>
+        <a href="#ozet" class="nav-link">Bütçe Özeti</a>
+      </nav>
+      <button data-theme-toggle aria-label="Temayı değiştir" class="theme-toggle">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Manisa'dan Köln Katedrali'ne<br><span class="highlight">Gezi Haritanız</span></h1>
+        <p class="hero-sub">Bütçenize göre ulaşım, konaklama, gezilecek yerler ve dönüş rotanızı keşfedin.</p>
+      </div>
+    </section>
+
+    <!-- Budget Slider -->
+    <section class="budget-section" id="harita">
+      <div class="budget-control">
+        <div class="budget-header">
+          <h2>Bütçe Seviyesi</h2>
+          <div class="budget-labels">
+            <span class="budget-label" data-level="low">Düşük</span>
+            <span class="budget-label" data-level="mid">Orta</span>
+            <span class="budget-label" data-level="high">Yüksek</span>
+          </div>
+        </div>
+        <div class="slider-container">
+          <input type="range" id="budgetSlider" min="0" max="2" step="1" value="1" class="budget-slider">
+          <div class="slider-track">
+            <div class="slider-fill" id="sliderFill"></div>
+          </div>
+        </div>
+        <div class="budget-indicator">
+          <div class="budget-badge" id="budgetBadge">
+            <span class="badge-icon">💰</span>
+            <span class="badge-text" id="budgetText">Orta Bütçe</span>
+            <span class="badge-amount" id="budgetAmount">~₺22.000 - ₺30.000</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+      <div id="map" class="map-container"></div>
+      <div class="map-legend">
+        <div class="legend-item"><span class="legend-dot" style="background:#e74c3c"></span>Gidiş Rotası</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#2ecc71"></span>Dönüş Rotası</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#f39c12"></span>Gezilecek Yer</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#9b59b6"></span>Alışveriş</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#3498db"></span>Konaklama</div>
+      </div>
+    </section>
+
+    <!-- Details Cards -->
+    <section class="details-section" id="detaylar">
+      <h2 class="section-title">Gezi Detayları</h2>
+      <div class="cards-grid" id="cardsGrid">
+        <!-- Cards injected by JS -->
+      </div>
+    </section>
+
+    <!-- Budget Summary -->
+    <section class="summary-section" id="ozet">
+      <h2 class="section-title">Toplam Bütçe Özeti</h2>
+      <div class="summary-grid" id="summaryGrid">
+        <!-- Summary injected by JS -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Manisa → Köln Gezi Planlayıcı &mdash; 2026</p>
+    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
